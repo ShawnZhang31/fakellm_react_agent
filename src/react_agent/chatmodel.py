@@ -1,0 +1,4 @@
+from langchain_core.language_models.fake_chat_models import FakeListChatModel, FakeMessagesListChatModel
+from react_agent.fake_replies import PREDEFINED_REPLIES, PREDEFINED_REPLIES_MESSAGES
+
+FakeModel = FakeMessagesListChatModel(responses=PREDEFINED_REPLIES_MESSAGES, sleep=1.0)
