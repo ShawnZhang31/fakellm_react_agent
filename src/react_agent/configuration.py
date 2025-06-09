@@ -19,7 +19,11 @@ class Configuration:
         default=prompts.SYSTEM_PROMPT,
         metadata={
             "description": "The system prompt to use for the agent's interactions. "
-            "This prompt sets the context and behavior for the agent."
+            "This prompt sets the context and behavior for the agent.",
+            "json_schema_extra": {
+                "langgraph_nodes": ["call_model"],
+                "langgraph_type": "prompt"
+            }
         },
     )
 
@@ -31,12 +35,16 @@ class Configuration:
     #     },
     # )
 
-    # max_search_results: int = field(
-    #     default=10,
-    #     metadata={
-    #         "description": "The maximum number of search results to return for each search query."
-    #     },
-    # )
+    max_search_results: int = field(
+        default=10,
+        metadata={
+            "description": "每次所有请求返回的最大搜索结果数量。",
+            "json_schema_extra": {
+                "langgraph_nodes": ["tools"],
+                "langgraph_type": "integer"
+            }
+        },
+    )
 
     @classmethod
     def from_context(cls) -> Configuration:
